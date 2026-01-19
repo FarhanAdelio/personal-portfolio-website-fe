@@ -3,9 +3,10 @@ import type { PageLoad } from './$types';
 
 export const load: PageLoad = async () => {
 	try {
-		const [profileRes, experiencesRes, skillsRes, projectsRes] = await Promise.all([
+		const [profileRes, experiencesRes, educationRes, skillsRes, projectsRes] = await Promise.all([
 			api.getProfile(),
 			api.getExperiences(),
+			api.getEducation(),
 			api.getSkills(),
 			api.getProjects()
 		]);
@@ -13,6 +14,7 @@ export const load: PageLoad = async () => {
 		return {
 			profile: profileRes.data,
 			experiences: experiencesRes.data,
+			education: educationRes.data,
 			skills: skillsRes.data,
 			projects: projectsRes.data
 		};
@@ -21,6 +23,7 @@ export const load: PageLoad = async () => {
 		return {
 			profile: null,
 			experiences: [],
+			education: [],
 			skills: null,
 			projects: []
 		};
