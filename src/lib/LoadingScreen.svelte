@@ -31,7 +31,7 @@
 					<span class="bracket right">{'/>'}</span>
 				</div>
 			</div>
-			<div class="loading-text">Loading Portfolio...</div>
+			<div class="loading-text">Loading Portofolio...</div>
 			<div class="progress-bar">
 				<div class="progress-fill" style="width: {progress}%"></div>
 			</div>

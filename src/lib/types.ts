@@ -47,6 +47,13 @@ export interface Skill {
 	name: string;
 	level: number;
 	icon?: string;
+	logo?: string;
+}
+
+export interface Tool {
+	name: string;
+	icon?: string;
+	logo?: string;
 }
 
 export interface Skills {
@@ -54,7 +61,7 @@ export interface Skills {
 	dataSkills?: Skill[];
 	programming?: Skill[];
 	softSkills?: string[];
-	tools?: string[];
+	tools?: Tool[];
 }
 
 export interface Project {
