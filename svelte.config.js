@@ -8,7 +8,11 @@ const config = {
 	// for more information about preprocessors
 	preprocess: [vitePreprocess(), mdsvex()],
 
-	kit: { adapter: adapter() },
+	kit: { 
+		adapter: adapter({
+			runtime: 'nodejs20.x'
+		})
+	},
 	extensions: ['.svelte', '.svx']
 };
 
