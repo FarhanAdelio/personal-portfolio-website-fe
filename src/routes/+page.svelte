@@ -13,6 +13,10 @@
 	import AnimatedName from '$lib/AnimatedName.svelte';
 	
 	export let data;
+
+	// Get base URL from API URL (remove /api/v1)
+	const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
+	const baseUrl = apiUrl.replace('/api/v1', '');
 	
 	let activeSection = 'home';
 	let scrollY = 0;
@@ -106,7 +110,7 @@
 		</div>
 		
 		<a href="#home" class="nav-logo">
-			<img src="http://localhost:8080/img/logo/slogan.png" alt="Logo" />
+			<img src="{baseUrl}/img/logo/slogan.png" alt="Logo" />
 		</a>
 		
 		<div class="nav-links nav-right">
@@ -394,7 +398,7 @@
 									<div class="exp-logo-container">
 										{#if exp.logo}
 											<div class="exp-logo-wrapper">
-												<img src="http://localhost:8080{exp.logo}" alt="{exp.company}" class="exp-logo" />
+												<img src="{baseUrl}{exp.logo}" alt="{exp.company}" class="exp-logo" />
 											</div>
 										{/if}
 										<div class="exp-header-content">
@@ -495,7 +499,7 @@
 									<div class="tech-marquee-card">
 										{#if skill.logo}
 											<div class="tech-marquee-logo">
-												<img src="http://localhost:8080{skill.logo}" alt="{skill.name}" />
+												<img src="{baseUrl}{skill.logo}" alt="{skill.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{skill.icon || '◆'}</div>
@@ -508,7 +512,7 @@
 									<div class="tech-marquee-card">
 										{#if skill.logo}
 											<div class="tech-marquee-logo">
-												<img src="http://localhost:8080{skill.logo}" alt="{skill.name}" />
+												<img src="{baseUrl}{skill.logo}" alt="{skill.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{skill.icon || '◆'}</div>
@@ -528,7 +532,7 @@
 									<div class="tech-marquee-card">
 										{#if tool.logo}
 											<div class="tech-marquee-logo">
-												<img src="http://localhost:8080{tool.logo}" alt="{tool.name}" />
+												<img src="{baseUrl}{tool.logo}" alt="{tool.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{tool.icon || '🔧'}</div>
@@ -541,7 +545,7 @@
 									<div class="tech-marquee-card">
 										{#if tool.logo}
 											<div class="tech-marquee-logo">
-												<img src="http://localhost:8080{tool.logo}" alt="{tool.name}" />
+												<img src="{baseUrl}{tool.logo}" alt="{tool.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{tool.icon || '🔧'}</div>
@@ -612,7 +616,7 @@
 											playsinline
 											preload="metadata"
 										>
-											<source src="http://localhost:8080{project.video}" type="video/mp4" />
+											<source src="{baseUrl}{project.video}" type="video/mp4" />
 											Your browser doesn't support video playback.
 										</video>
 									{/if}
