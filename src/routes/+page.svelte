@@ -839,6 +839,8 @@
 </footer>
 
 <style>
+	@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap');
+
 	:global(*) {
 		margin: 0;
 		padding: 0;
@@ -846,11 +848,12 @@
 	}
 
 	:global(body) {
-		font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', sans-serif;
+		font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
 		background: #0a0a0a;
 		color: #e0e0e0;
 		line-height: 1.6;
 		overflow-x: hidden;
+		letter-spacing: -0.01em;
 	}
 
 	:global(html) {
@@ -923,8 +926,9 @@
 	.nav-links a {
 		color: #999;
 		text-decoration: none;
-		font-size: 0.95rem;
-		font-weight: 500;
+		font-size: 1.05rem;
+		font-weight: 600;
+		letter-spacing: 0.02em;
 		transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
 		position: relative;
 		padding: 0.5rem 0;
@@ -1023,29 +1027,34 @@
 	/* Removed .name class since we're using AnimatedName component */
 
 	.title {
-		font-size: clamp(1.3rem, 3vw, 1.8rem);
+		font-size: clamp(1.4rem, 3vw, 1.9rem);
 		color: #999;
 		margin-bottom: 1rem;
-		font-weight: 300;
+		font-weight: 400;
+		letter-spacing: 0.01em;
 		animation: fadeInUp 1.2s ease-out 0.4s backwards;
 	}
 
 	.subtitle {
-		font-size: clamp(1.2rem, 3vw, 1.6rem);
+		font-size: clamp(1.3rem, 3vw, 1.7rem);
 		color: #fff;
 		margin-bottom: 1.5rem;
 		min-height: 2.5rem;
 		font-weight: 600;
+		letter-spacing: -0.01em;
 		animation: fadeInUp 1.4s ease-out 0.6s backwards;
 	}
 
 	.tagline {
-		font-size: 1rem;
+		font-size: 1.05rem;
 		color: #666;
 		margin-bottom: 3rem;
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
+		font-weight: 300;
+		letter-spacing: 0.02em;
+		line-height: 1.7;
 		animation: fadeInUp 1.6s ease-out 0.8s backwards;
 	}
 
@@ -1059,7 +1068,7 @@
 
 	.btn {
 		padding: 1rem 2.5rem;
-		font-size: 1rem;
+		font-size: 1.05rem;
 		font-weight: 600;
 		text-decoration: none;
 		border-radius: 8px;
@@ -1069,6 +1078,8 @@
 		display: inline-flex;
 		align-items: center;
 		gap: 0.5rem;
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		letter-spacing: 0.01em;
 		position: relative;
 		overflow: hidden;
 	}
@@ -1245,11 +1256,12 @@
 
 	.section-title {
 		font-size: clamp(2.5rem, 5vw, 4rem);
-		font-weight: 800;
+		font-weight: 700;
 		text-align: center;
 		margin-bottom: 4rem;
 		color: #fff;
-		letter-spacing: -1px;
+		letter-spacing: -0.03em;
+		font-family: 'Plus Jakarta Sans', sans-serif;
 	}
 
 	/* Fade-in Animation */
@@ -2934,11 +2946,13 @@
 	}
 
 	.project-title-new {
-		font-size: 1.3rem;
+		font-size: 1.4rem;
 		font-weight: 700;
 		color: #fff;
 		margin: 0 0 0.2rem 0;
 		line-height: 1.3;
+		font-family: 'Plus Jakarta Sans', sans-serif;
+		letter-spacing: -0.01em;
 	}
 
 	.project-date {
