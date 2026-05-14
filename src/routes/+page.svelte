@@ -18,6 +18,9 @@
 	const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8080/api/v1';
 	const baseUrl = apiUrl.replace('/api/v1', '');
 	
+	// Images are served from static folder, not backend
+	const imgBase = ''; // Empty string means root (static folder)
+	
 	let activeSection = 'home';
 	let scrollY = 0;
 	let isVisible: { [key: string]: boolean } = {};
@@ -110,7 +113,7 @@
 		</div>
 		
 		<a href="#home" class="nav-logo">
-			<img src="{baseUrl}/img/logo/slogan.png" alt="Logo" />
+			<img src="/img/logo/slogan.png" alt="Logo" />
 		</a>
 		
 		<div class="nav-links nav-right">
@@ -398,7 +401,7 @@
 									<div class="exp-logo-container">
 										{#if exp.logo}
 											<div class="exp-logo-wrapper">
-												<img src="{baseUrl}{exp.logo}" alt="{exp.company}" class="exp-logo" />
+												<img src="{exp.logo}" alt="{exp.company}" class="exp-logo" />
 											</div>
 										{/if}
 										<div class="exp-header-content">
@@ -499,7 +502,7 @@
 									<div class="tech-marquee-card">
 										{#if skill.logo}
 											<div class="tech-marquee-logo">
-												<img src="{baseUrl}{skill.logo}" alt="{skill.name}" />
+												<img src="{skill.logo}" alt="{skill.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{skill.icon || '◆'}</div>
@@ -512,7 +515,7 @@
 									<div class="tech-marquee-card">
 										{#if skill.logo}
 											<div class="tech-marquee-logo">
-												<img src="{baseUrl}{skill.logo}" alt="{skill.name}" />
+												<img src="{skill.logo}" alt="{skill.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{skill.icon || '◆'}</div>
@@ -532,7 +535,7 @@
 									<div class="tech-marquee-card">
 										{#if tool.logo}
 											<div class="tech-marquee-logo">
-												<img src="{baseUrl}{tool.logo}" alt="{tool.name}" />
+												<img src="{tool.logo}" alt="{tool.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{tool.icon || '🔧'}</div>
@@ -545,7 +548,7 @@
 									<div class="tech-marquee-card">
 										{#if tool.logo}
 											<div class="tech-marquee-logo">
-												<img src="{baseUrl}{tool.logo}" alt="{tool.name}" />
+												<img src="{tool.logo}" alt="{tool.name}" />
 											</div>
 										{:else}
 											<div class="tech-marquee-icon">{tool.icon || '🔧'}</div>
@@ -616,7 +619,7 @@
 											playsinline
 											preload="metadata"
 										>
-											<source src="{baseUrl}{project.video}" type="video/mp4" />
+											<source src="{project.video}" type="video/mp4" />
 											Your browser doesn't support video playback.
 										</video>
 									{/if}
