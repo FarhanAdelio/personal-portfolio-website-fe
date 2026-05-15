@@ -15,21 +15,22 @@
 	onMount(() => {
 		if (!container) return;
 
-		// Create floating orbs
+		// Create floating orbs - ENHANCED with stronger glow
 		const colors = [
-			'rgba(100, 200, 255, 0.4)',
-			'rgba(100, 200, 255, 0.3)',
-			'rgba(150, 220, 255, 0.35)',
-			'rgba(100, 180, 255, 0.25)',
+			'rgba(100, 200, 255, 0.7)',
+			'rgba(100, 200, 255, 0.6)',
+			'rgba(150, 220, 255, 0.65)',
+			'rgba(100, 180, 255, 0.55)',
+			'rgba(120, 210, 255, 0.6)',
 		];
 
-		orbs = Array.from({ length: 5 }, (_, i) => ({
+		orbs = Array.from({ length: 7 }, (_, i) => ({
 			id: i,
 			x: Math.random() * window.innerWidth,
 			y: Math.random() * window.innerHeight,
-			vx: (Math.random() - 0.5) * 0.3,
-			vy: (Math.random() - 0.5) * 0.3,
-			size: Math.random() * 150 + 100,
+			vx: (Math.random() - 0.5) * 0.5,
+			vy: (Math.random() - 0.5) * 0.5,
+			size: Math.random() * 200 + 120,
 			color: colors[i % colors.length],
 		}));
 
@@ -100,8 +101,20 @@
 	.orb {
 		position: absolute;
 		border-radius: 50%;
-		filter: blur(40px);
+		filter: blur(50px) drop-shadow(0 0 60px rgba(100, 200, 255, 0.8));
 		transition: none;
 		mix-blend-mode: screen;
+		animation: orbPulse 4s ease-in-out infinite;
+	}
+
+	@keyframes orbPulse {
+		0%, 100% {
+			transform: scale(1);
+			opacity: 0.6;
+		}
+		50% {
+			transform: scale(1.2);
+			opacity: 0.9;
+		}
 	}
 </style>

@@ -37,7 +37,7 @@
 		};
 
 		// Initialize particles
-		for (let i = 0; i < 30; i++) {
+		for (let i = 0; i < 50; i++) {
 			particles.push(createParticle());
 		}
 
@@ -46,8 +46,8 @@
 			const offsetX = (time * 5) % gridSize;
 			const offsetY = (time * 3) % gridSize;
 
-			ctx!.strokeStyle = 'rgba(100, 200, 255, 0.03)';
-			ctx!.lineWidth = 0.5;
+			ctx!.strokeStyle = 'rgba(100, 200, 255, 0.08)';
+			ctx!.lineWidth = 1;
 
 			// Vertical lines
 			for (let x = -gridSize + offsetX; x < canvas.width; x += gridSize) {
@@ -70,7 +70,7 @@
 			particles = particles.filter((p) => p.life > 0);
 
 			// Add new particles occasionally
-			if (Math.random() < 0.1 && particles.length < 40) {
+			if (Math.random() < 0.15 && particles.length < 60) {
 				particles.push(createParticle());
 			}
 
@@ -79,11 +79,16 @@
 				p.y += p.vy;
 				p.life -= 1;
 
-				const alpha = (p.life / p.maxLife) * 0.6;
+				const alpha = (p.life / p.maxLife) * 1.2;
 				ctx!.fillStyle = `rgba(100, 200, 255, ${alpha})`;
 				ctx!.beginPath();
-				ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+				ctx!.arc(p.x, p.y, p.size * 1.2, 0, Math.PI * 2);
 				ctx!.fill();
+				
+				// Add glow to particles
+				ctx!.strokeStyle = `rgba(100, 200, 255, ${alpha * 0.5})`;
+				ctx!.lineWidth = 0.5;
+				ctx!.stroke();
 
 				// Wrap around
 				if (p.x < 0) p.x = canvas.width;
@@ -94,20 +99,24 @@
 		};
 
 		const drawDataLines = () => {
-			ctx!.strokeStyle = `rgba(100, 200, 255, ${0.05 + Math.sin(time * 0.01) * 0.02})`;
-			ctx!.lineWidth = 1;
+			ctx!.strokeStyle = `rgba(100, 200, 255, ${0.1 + Math.sin(time * 0.01) * 0.05})`;
+			ctx!.lineWidth = 1.5;
+			ctx!.shadowColor = 'rgba(100, 200, 255, 0.5)';
+			ctx!.shadowBlur = 10;
 
 			// Draw some diagonal lines that appear to be data flowing
-			const lines = 5;
+			const lines = 8;
 			for (let i = 0; i < lines; i++) {
-				const startX = (time * 20 + i * 150) % (canvas.width + 200) - 200;
-				const startY = (i * 100) % canvas.height;
+				const startX = (time * 25 + i * 150) % (canvas.width + 200) - 200;
+				const startY = (i * 80) % canvas.height;
 
 				ctx!.beginPath();
 				ctx!.moveTo(startX, startY);
-				ctx!.lineTo(startX + 200, startY + 100);
+				ctx!.lineTo(startX + 250, startY + 120);
 				ctx!.stroke();
 			}
+			
+			ctx!.shadowBlur = 0;
 		};
 
 		const animate = () => {
