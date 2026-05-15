@@ -36,15 +36,15 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
-		z-index: 1;
+		z-index: 0;
 		background: radial-gradient(
 			circle at var(--gradient-x, 50%) var(--gradient-y, 50%),
-			rgba(100, 200, 255, 0.15) 0%,
-			rgba(100, 200, 255, 0.08) 25%,
-			transparent 60%
+			rgba(100, 200, 255, 0.1) 0%,
+			rgba(100, 200, 255, 0.05) 30%,
+			transparent 65%
 		);
-		transition: background 0.08s ease-out;
-		filter: blur(80px);
-		box-shadow: inset 0 0 200px rgba(100, 200, 255, 0.1);
+		transition: background 0.1s ease-out;
+		filter: blur(90px);
+		box-shadow: inset 0 0 220px rgba(100, 200, 255, 0.06);
 	}
 </style>

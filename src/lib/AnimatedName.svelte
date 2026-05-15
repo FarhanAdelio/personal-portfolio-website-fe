@@ -30,12 +30,13 @@
 <style>
 	.animated-name {
 		display: inline-block;
-		font-size: clamp(2.5rem, 6vw, 4rem);
+		font-size: clamp(3rem, 6.5vw, 4.8rem);
 		font-weight: 800;
-		letter-spacing: -1px;
+		letter-spacing: -0.02em;
 		line-height: 1.2;
 		position: relative;
 		perspective: 1000px;
+		filter: drop-shadow(0 12px 40px rgba(0, 0, 0, 0.45));
 	}
 	
 	.letter {
@@ -88,7 +89,7 @@
 			transform: translateY(0) scale(1);
 		}
 		50% {
-			transform: translateY(-8px) scale(1.1);
+			transform: translateY(-6px) scale(1.06);
 		}
 	}
 </style>

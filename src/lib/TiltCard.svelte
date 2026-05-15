@@ -12,18 +12,22 @@
 		const centerX = rect.width / 2;
 		const centerY = rect.height / 2;
 		
-		const rotateX = (y - centerY) / 10;
-		const rotateY = (centerX - x) / 10;
-		
-		card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
+		const rotateX = (y - centerY) / 18;
+		const rotateY = (centerX - x) / 18;
+
+		card.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+		card.style.setProperty('--mouse-x', `${(x / rect.width) * 100}%`);
+		card.style.setProperty('--mouse-y', `${(y / rect.height) * 100}%`);
 		
 		if (glare) {
-			glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.1) 0%, transparent 50%)`;
+			glare.style.background = `radial-gradient(circle at ${x}px ${y}px, rgba(255,255,255,0.08) 0%, transparent 55%)`;
 		}
 	}
 	
 	function handleMouseLeave() {
 		card.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale3d(1, 1, 1)';
+		card.style.setProperty('--mouse-x', '50%');
+		card.style.setProperty('--mouse-y', '50%');
 	}
 </script>
 

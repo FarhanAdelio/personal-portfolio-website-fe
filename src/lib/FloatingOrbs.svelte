@@ -15,22 +15,21 @@
 	onMount(() => {
 		if (!container) return;
 
-		// Create floating orbs - ENHANCED with stronger glow
+		// Create floating orbs - subtle cinematic glow
 		const colors = [
-			'rgba(100, 200, 255, 0.7)',
-			'rgba(100, 200, 255, 0.6)',
-			'rgba(150, 220, 255, 0.65)',
-			'rgba(100, 180, 255, 0.55)',
-			'rgba(120, 210, 255, 0.6)',
+			'rgba(100, 200, 255, 0.28)',
+			'rgba(120, 210, 255, 0.24)',
+			'rgba(90, 180, 255, 0.22)',
+			'rgba(150, 220, 255, 0.26)',
 		];
 
-		orbs = Array.from({ length: 7 }, (_, i) => ({
+		orbs = Array.from({ length: 6 }, (_, i) => ({
 			id: i,
 			x: Math.random() * window.innerWidth,
 			y: Math.random() * window.innerHeight,
-			vx: (Math.random() - 0.5) * 0.5,
-			vy: (Math.random() - 0.5) * 0.5,
-			size: Math.random() * 200 + 120,
+			vx: (Math.random() - 0.5) * 0.25,
+			vy: (Math.random() - 0.5) * 0.25,
+			size: Math.random() * 120 + 140,
 			color: colors[i % colors.length],
 		}));
 
@@ -80,7 +79,7 @@
 				width: {orb.size}px;
 				height: {orb.size}px;
 				background: radial-gradient(circle at 30% 30%, {orb.color}, transparent 70%);
-				box-shadow: 0 0 {orb.size * 0.8}px {orb.color};
+				box-shadow: 0 0 {orb.size * 0.6}px {orb.color};
 			"
 		/>
 	{/each}
@@ -94,17 +93,18 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
-		z-index: 2;
+		z-index: 0;
 		overflow: hidden;
 	}
 
 	.orb {
 		position: absolute;
 		border-radius: 50%;
-		filter: blur(50px) drop-shadow(0 0 60px rgba(100, 200, 255, 0.8));
+		filter: blur(60px);
 		transition: none;
 		mix-blend-mode: screen;
-		animation: orbPulse 4s ease-in-out infinite;
+		opacity: 0.6;
+		animation: orbPulse 6s ease-in-out infinite;
 	}
 
 	@keyframes orbPulse {
@@ -113,8 +113,8 @@
 			opacity: 0.6;
 		}
 		50% {
-			transform: scale(1.2);
-			opacity: 0.9;
+			transform: scale(1.08);
+			opacity: 0.75;
 		}
 	}
 </style>

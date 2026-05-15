@@ -20,7 +20,7 @@
 			this.size = Math.random() * 2 + 0.5;
 			this.speedX = (Math.random() - 0.5) * 0.5;
 			this.speedY = (Math.random() - 0.5) * 0.5;
-			this.opacity = Math.random() * 0.5 + 0.2;
+			this.opacity = Math.random() * 0.25 + 0.1;
 		}
 		
 		update(width: number, height: number) {
@@ -68,7 +68,7 @@
 					const distance = Math.sqrt(dx * dx + dy * dy);
 					
 					if (distance < 100) {
-						ctx.strokeStyle = `rgba(255, 255, 255, ${0.1 * (1 - distance / 100)})`;
+						ctx.strokeStyle = `rgba(255, 255, 255, ${0.06 * (1 - distance / 100)})`;
 						ctx.lineWidth = 0.5;
 						ctx.beginPath();
 						ctx.moveTo(p1.x, p1.y);

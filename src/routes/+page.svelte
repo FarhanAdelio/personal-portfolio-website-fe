@@ -137,6 +137,12 @@
 			{#if data.profile}
 				<div class="hero-text">
 					<p class="greeting">Hello, I'm</p>
+					<div class="hero-system">
+						<span class="sys-dot" aria-hidden="true"></span>
+						<span class="sys-label">System Online</span>
+						<span class="sys-divider"></span>
+						<span class="sys-coords">ID: FA-2026</span>
+					</div>
 					<div class="name-wrapper">
 						<AnimatedName name={data.profile.name} />
 					</div>
@@ -197,7 +203,7 @@
 			<div class="about-header-3d observe-fade" id="about-header" class:visible={isVisible['about-header']}>
 				<div class="title-decoration">
 					<div class="deco-line"></div>
-					<h2 class="section-title-3d">About Me</h2>
+					<h2 class="section-title-3d" data-label="01 / ABOUT">About Me</h2>
 					<div class="deco-line"></div>
 				</div>
 				<p class="about-subtitle-3d">Crafting Digital Solutions with Precision & Passion</p>
@@ -315,7 +321,7 @@
 	<!-- Education Section -->
 	<section id="education" class="section section-dark">
 		<div class="container">
-			<h2 class="section-title observe-fade" id="education-title" class:visible={isVisible['education-title']}>Education</h2>
+			<h2 class="section-title observe-fade" id="education-title" data-label="02 / EDUCATION" class:visible={isVisible['education-title']}>Education</h2>
 			{#if data.education && data.education.length > 0}
 				<div class="education-wrapper">
 					{#each data.education as edu, i}
@@ -392,7 +398,7 @@
 	<!-- Experience Section -->
 	<section id="experience" class="section">
 		<div class="container">
-			<h2 class="section-title observe-fade" id="experience-title" class:visible={isVisible['experience-title']}>Work Experience</h2>
+			<h2 class="section-title observe-fade" id="experience-title" data-label="03 / EXPERIENCE" class:visible={isVisible['experience-title']}>Work Experience</h2>
 			{#if data.experiences && data.experiences.length > 0}
 				<div class="experience-wrapper">
 					{#each data.experiences as exp, i}
@@ -492,7 +498,7 @@
 	<!-- Skills Section -->
 	<section id="skills" class="section section-dark">
 		<div class="container">
-			<h2 class="section-title observe-fade" id="skills-title" class:visible={isVisible['skills-title']}>Skills & Technologies</h2>
+			<h2 class="section-title observe-fade" id="skills-title" data-label="04 / SKILLS" class:visible={isVisible['skills-title']}>Skills & Technologies</h2>
 			{#if data.skills}
 				<div class="skills-container">
 					<!-- Tech Badge -->
@@ -585,7 +591,7 @@
 	<!-- Projects Section -->
 	<section id="projects" class="section">
 		<div class="container">
-			<h2 class="section-title observe-fade" id="projects-title" class:visible={isVisible['projects-title']}>Projects</h2>
+			<h2 class="section-title observe-fade" id="projects-title" data-label="05 / PROJECTS" class:visible={isVisible['projects-title']}>Projects</h2>
 			{#if data.projects}
 				<div class="projects-grid">
 					{#each data.projects as project, i}
@@ -722,7 +728,7 @@
 						<span>Available for opportunities</span>
 					</div>
 					
-					<h2 class="contact-title">Let's Create Something Amazing Together</h2>
+					<h2 class="contact-title" data-label="06 / CONTACT">Let's Create Something Amazing Together</h2>
 					<p class="contact-description">
 						Whether you have a project in mind, need consultation, or just want to connect, 
 						I'm here to help turn your ideas into reality.
@@ -873,6 +879,18 @@
 		scroll-behavior: smooth;
 	}
 
+	:global(:root) {
+		--bg: #0a0a0a;
+		--bg-elevated: #0f0f0f;
+		--text-primary: #ffffff;
+		--text-muted: rgba(255, 255, 255, 0.6);
+		--glow-blue: rgba(100, 200, 255, 0.12);
+		--glow-blue-soft: rgba(100, 200, 255, 0.06);
+		--glass: rgba(255, 255, 255, 0.04);
+		--border-soft: rgba(255, 255, 255, 0.08);
+		--shadow-deep: 0 30px 80px rgba(0, 0, 0, 0.55);
+	}
+
 	/* Navbar */
 	.navbar {
 		position: fixed;
@@ -1001,12 +1019,24 @@
 		justify-content: center;
 		padding: 2rem;
 		position: relative;
-		background: linear-gradient(135deg, #0a0a0a 0%, #1a1a1a 100%);
+		overflow: hidden;
+		background:
+			radial-gradient(900px at 50% 20%, rgba(100, 200, 255, 0.12), transparent 65%),
+			radial-gradient(700px at 20% 10%, rgba(255, 255, 255, 0.05), transparent 60%),
+			linear-gradient(180deg, #0a0a0a 0%, #0b0c10 50%, #0a0a0a 100%);
 	}
 
 	.hero-content {
 		text-align: center;
-		max-width: 900px;
+		max-width: 980px;
+		padding: 1rem 2rem;
+	}
+
+	.hero-text {
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		gap: 0.4rem;
 	}
 
 	.animate-fade-in {
@@ -1025,11 +1055,46 @@
 	}
 
 	.greeting {
-		font-size: 1.2rem;
-		color: #999;
+		font-size: 1rem;
+		color: rgba(255, 255, 255, 0.55);
 		margin-bottom: 1rem;
-		font-weight: 300;
+		font-weight: 500;
+		text-transform: uppercase;
+		letter-spacing: 0.2em;
 		animation: fadeInUp 0.8s ease-out;
+	}
+
+	.hero-system {
+		display: inline-flex;
+		align-items: center;
+		gap: 0.6rem;
+		flex-wrap: wrap;
+		justify-content: center;
+		padding: 0.4rem 0.9rem;
+		border-radius: 999px;
+		background: rgba(255, 255, 255, 0.03);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		color: rgba(255, 255, 255, 0.6);
+		font-size: 0.75rem;
+		letter-spacing: 0.2em;
+		text-transform: uppercase;
+		margin-bottom: 1.2rem;
+		backdrop-filter: blur(8px);
+	}
+
+	.sys-dot {
+		width: 6px;
+		height: 6px;
+		border-radius: 50%;
+		background: rgba(100, 200, 255, 0.7);
+		box-shadow: 0 0 10px rgba(100, 200, 255, 0.6);
+		animation: pulse-dot 2.4s ease-in-out infinite;
+	}
+
+	.sys-divider {
+		width: 16px;
+		height: 1px;
+		background: rgba(255, 255, 255, 0.25);
 	}
 	
 	.name-wrapper {
@@ -1040,40 +1105,41 @@
 	/* Removed .name class since we're using AnimatedName component */
 
 	.title {
-		font-size: clamp(1.4rem, 3vw, 1.9rem);
-		color: #999;
+		font-size: clamp(1.15rem, 2.4vw, 1.5rem);
+		color: rgba(255, 255, 255, 0.6);
 		margin-bottom: 1rem;
-		font-weight: 400;
-		letter-spacing: 0.01em;
+		font-weight: 600;
+		letter-spacing: 0.22em;
+		text-transform: uppercase;
 		animation: fadeInUp 1.2s ease-out 0.4s backwards;
 	}
 
 	.subtitle {
-		font-size: clamp(1.3rem, 3vw, 1.7rem);
+		font-size: clamp(1.6rem, 3.2vw, 2.2rem);
 		color: #fff;
 		margin-bottom: 1.5rem;
 		min-height: 2.5rem;
 		font-weight: 600;
-		letter-spacing: -0.01em;
+		letter-spacing: -0.02em;
 		animation: fadeInUp 1.4s ease-out 0.6s backwards;
 	}
 
 	.tagline {
 		font-size: 1.05rem;
-		color: #666;
+		color: rgba(255, 255, 255, 0.55);
 		margin-bottom: 3rem;
 		max-width: 600px;
 		margin-left: auto;
 		margin-right: auto;
-		font-weight: 300;
-		letter-spacing: 0.02em;
+		font-weight: 400;
+		letter-spacing: 0.01em;
 		line-height: 1.7;
 		animation: fadeInUp 1.6s ease-out 0.8s backwards;
 	}
 
 	.hero-cta {
 		display: flex;
-		gap: 1.5rem;
+		gap: 1rem;
 		justify-content: center;
 		margin-bottom: 4rem;
 		animation: fadeInUp 1.8s ease-out 1s backwards;
@@ -1254,12 +1320,12 @@
 
 	/* Sections */
 	.section {
-		padding: 8rem 2rem;
+		padding: 9rem 2rem;
 		position: relative;
 	}
 
 	.section-dark {
-		background: #0f0f0f;
+		background: linear-gradient(180deg, #0b0c10 0%, #0f0f0f 100%);
 	}
 
 	.container {
@@ -1271,10 +1337,40 @@
 		font-size: clamp(2.5rem, 5vw, 4rem);
 		font-weight: 700;
 		text-align: center;
-		margin-bottom: 4rem;
+		margin-bottom: 4.5rem;
 		color: #fff;
 		letter-spacing: -0.03em;
 		font-family: 'Plus Jakarta Sans', sans-serif;
+		position: relative;
+	}
+
+	.section-title::before,
+	.section-title-3d::before,
+	.contact-title::before {
+		content: attr(data-label);
+		position: absolute;
+		left: 50%;
+		top: -1.6rem;
+		transform: translateX(-50%);
+		font-size: 0.7rem;
+		letter-spacing: 0.35em;
+		text-transform: uppercase;
+		color: rgba(255, 255, 255, 0.35);
+		font-weight: 600;
+	}
+
+	.section-title::after,
+	.section-title-3d::after,
+	.contact-title::after {
+		content: '';
+		position: absolute;
+		left: 50%;
+		bottom: -1rem;
+		transform: translateX(-50%);
+		width: 120px;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.35), transparent);
+		opacity: 0.6;
 	}
 
 	/* Fade-in Animation */
@@ -1354,6 +1450,7 @@
 		background-size: 200% 200%;
 		animation: gradient-shift 4s ease infinite;
 		letter-spacing: -1px;
+		position: relative;
 	}
 
 	@keyframes gradient-shift {
@@ -2127,24 +2224,38 @@
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		width: 600px;
-		height: 600px;
-		background: radial-gradient(circle, rgba(100, 200, 255, 0.08) 0%, transparent 70%);
+		width: 900px;
+		height: 900px;
+		background: radial-gradient(circle, rgba(100, 200, 255, 0.12) 0%, transparent 70%);
 		border-radius: 50%;
-		filter: blur(60px);
+		filter: blur(80px);
 		pointer-events: none;
 		animation: heroGlowPulse 6s ease-in-out infinite;
+		z-index: 0;
+	}
+
+	.hero::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background-image:
+			linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+			linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+		background-size: 140px 140px;
+		opacity: 0.06;
+		mix-blend-mode: screen;
+		pointer-events: none;
 		z-index: 0;
 	}
 
 	@keyframes heroGlowPulse {
 		0%, 100% {
 			transform: translate(-50%, -50%) scale(1);
-			opacity: 0.8;
+			opacity: 0.7;
 		}
 		50% {
-			transform: translate(-50%, -50%) scale(1.1);
-			opacity: 1;
+			transform: translate(-50%, -50%) scale(1.05);
+			opacity: 0.9;
 		}
 	}
 
@@ -2166,9 +2277,9 @@
 		left: -10px;
 		right: -10px;
 		bottom: -10px;
-		background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, transparent 50%);
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.12) 0%, transparent 55%);
 		border-radius: 20px;
-		filter: blur(20px);
+		filter: blur(30px);
 		opacity: 0;
 		animation: nameGlowAppear 1s ease-out 0.3s forwards;
 		pointer-events: none;
@@ -2400,13 +2511,25 @@
 	section::before {
 		content: '';
 		position: absolute;
-		top: 0;
 		left: 0;
 		right: 0;
-		height: 1px;
-		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.2), transparent);
-		opacity: 0;
-		transition: opacity 0.6s ease;
+		height: 140px;
+		top: -1px;
+		background: linear-gradient(180deg, rgba(100, 200, 255, 0.08), transparent 70%);
+		opacity: 0.35;
+		pointer-events: none;
+	}
+
+	section::after {
+		content: '';
+		position: absolute;
+		left: 0;
+		right: 0;
+		height: 140px;
+		bottom: -1px;
+		background: linear-gradient(0deg, rgba(100, 200, 255, 0.08), transparent 70%);
+		opacity: 0.35;
+		pointer-events: none;
 	}
 
 	/* Smooth Link Hover Effects */
@@ -2711,18 +2834,17 @@
 	}
 
 	/* Section Divider Glow */
-	section::before {
-		animation: dividerPulse 3s ease-in-out infinite;
+	section::before,
+	section::after {
+		animation: dividerPulse 8s ease-in-out infinite;
 	}
 
 	@keyframes dividerPulse {
 		0%, 100% {
-			opacity: 0;
-			width: 0%;
+			opacity: 0.22;
 		}
 		50% {
-			opacity: 1;
-			width: 100%;
+			opacity: 0.45;
 		}
 	}
 
@@ -2744,8 +2866,24 @@
 			);
 		pointer-events: none;
 		z-index: 0;
-		opacity: 0.5;
-		animation: textureShift 20s linear infinite;
+		opacity: 0.12;
+		animation: textureShift 30s linear infinite;
+	}
+
+	main::after {
+		content: '';
+		position: fixed;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background-image:
+			radial-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+		background-size: 3px 3px;
+		opacity: 0.06;
+		pointer-events: none;
+		z-index: 0;
+		mix-blend-mode: soft-light;
 	}
 
 	@keyframes textureShift {
@@ -3771,15 +3909,17 @@
 
 	/* Compact Project Card with 3D Tilt */
 	.project-card-detailed {
-		background: rgba(255, 255, 255, 0.02);
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		background: var(--glass);
+		border: 1px solid var(--border-soft);
 		border-radius: 20px;
 		overflow: hidden;
 		transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
 		position: relative;
 		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
-		backdrop-filter: blur(10px);
-		-webkit-backdrop-filter: blur(10px);
+		backdrop-filter: blur(14px) saturate(1.1);
+		-webkit-backdrop-filter: blur(14px) saturate(1.1);
+		transform-style: preserve-3d;
+		will-change: transform, box-shadow;
 	}
 
 	.project-card-detailed::before {
@@ -3789,8 +3929,8 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: linear-gradient(135deg, rgba(100, 200, 255, 0.08) 0%, transparent 50%, rgba(100, 200, 255, 0.04) 100%);
-		opacity: 0;
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.08) 0%, transparent 55%, rgba(100, 200, 255, 0.04) 100%);
+		opacity: 0.2;
 		transition: opacity 0.5s ease;
 		pointer-events: none;
 		z-index: 1;
@@ -3800,26 +3940,26 @@
 		content: '';
 		position: absolute;
 		inset: 0;
-		background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(100, 200, 255, 0.1) 0%, transparent 50%);
+		background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(100, 200, 255, 0.18) 0%, transparent 55%);
 		opacity: 0;
-		transition: opacity 0.3s ease;
+		transition: opacity 0.35s ease;
 		pointer-events: none;
 		z-index: 1;
 	}
 
 	.project-card-detailed:hover {
-		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(100, 200, 255, 0.3);
-		transform: translateY(-8px) scale(1.01);
-		box-shadow: 0 20px 60px rgba(100, 200, 255, 0.15), 0 15px 40px rgba(0, 0, 0, 0.4);
+		background: rgba(255, 255, 255, 0.05);
+		border-color: rgba(100, 200, 255, 0.35);
+		transform: translateY(-10px) scale(1.015);
+		box-shadow: 0 24px 70px rgba(100, 200, 255, 0.18), 0 18px 50px rgba(0, 0, 0, 0.45);
 	}
 
 	.project-card-detailed:hover::before {
-		opacity: 1;
+		opacity: 0.8;
 	}
 
 	.project-card-detailed:hover::after {
-		opacity: 1;
+		opacity: 0.7;
 	}
 
 	.project-card-detailed.featured {
@@ -3834,7 +3974,7 @@
 
 	/* Animated Project Card Border */
 	.project-card-detailed {
-		animation: cardBorderPulse 4s ease-in-out infinite;
+		animation: cardBorderPulse 6s ease-in-out infinite;
 	}
 
 	@keyframes cardBorderPulse {
@@ -3842,13 +3982,13 @@
 			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 		}
 		50% {
-			box-shadow: 0 8px 40px rgba(100, 200, 255, 0.08);
+			box-shadow: 0 8px 36px rgba(100, 200, 255, 0.05);
 		}
 	}
 
 	/* Featured Project Card Animation */
 	.project-card-detailed.featured {
-		animation: featuredCardPulse 3s ease-in-out infinite;
+		animation: featuredCardPulse 6s ease-in-out infinite;
 	}
 
 	@keyframes featuredCardPulse {
@@ -3856,7 +3996,7 @@
 			box-shadow: 0 10px 40px rgba(100, 200, 255, 0.1), 0 8px 30px rgba(0, 0, 0, 0.3);
 		}
 		50% {
-			box-shadow: 0 10px 50px rgba(100, 200, 255, 0.15), 0 8px 30px rgba(0, 0, 0, 0.3);
+			box-shadow: 0 10px 48px rgba(100, 200, 255, 0.12), 0 8px 30px rgba(0, 0, 0, 0.3);
 		}
 	}
 
@@ -3896,6 +4036,8 @@
 	/* Project Details - Compact */
 	.project-details-section {
 		padding: 1.8rem 2rem 2rem;
+		position: relative;
+		z-index: 2;
 	}
 
 	.project-header-row {
@@ -3918,6 +4060,13 @@
 		font-weight: 700;
 		color: rgba(255, 255, 255, 0.6);
 		flex-shrink: 0;
+		transition: all 0.4s ease;
+	}
+
+	.project-card-detailed:hover .project-letter-badge {
+		color: #fff;
+		border-color: rgba(100, 200, 255, 0.35);
+		box-shadow: 0 0 18px rgba(100, 200, 255, 0.25);
 	}
 
 	.project-header-text {
@@ -3963,6 +4112,12 @@
 		font-size: 0.75rem;
 		color: rgba(255, 255, 255, 0.7);
 		font-weight: 600;
+		transition: all 0.3s ease;
+	}
+
+	.project-card-detailed:hover .type-badge-new {
+		border-color: rgba(100, 200, 255, 0.25);
+		color: rgba(255, 255, 255, 0.85);
 	}
 
 	/* Description - Compact */
@@ -3971,6 +4126,37 @@
 		line-height: 1.6;
 		color: rgba(255, 255, 255, 0.6);
 		margin-bottom: 1.2rem;
+	}
+
+	/* Tech Icons - Premium Grid */
+	.project-tech-icons {
+		display: flex;
+		gap: 0.6rem;
+		flex-wrap: wrap;
+		margin-bottom: 1.2rem;
+	}
+
+	.tech-icon-item {
+		width: 36px;
+		height: 36px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		background: rgba(255, 255, 255, 0.04);
+		border: 1px solid rgba(255, 255, 255, 0.08);
+		border-radius: 10px;
+		transition: all 0.3s ease;
+	}
+
+	.project-card-detailed:hover .tech-icon-item {
+		border-color: rgba(100, 200, 255, 0.25);
+		box-shadow: 0 0 14px rgba(100, 200, 255, 0.2);
+		transform: translateY(-2px);
+	}
+
+	.tech-emoji {
+		font-size: 1rem;
+		filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3));
 	}
 
 	/* Tech Tags - Simple & Clean */
@@ -4278,6 +4464,7 @@
 		-webkit-background-clip: text;
 		-webkit-text-fill-color: transparent;
 		background-clip: text;
+		position: relative;
 	}
 
 	.contact-description {
@@ -4619,11 +4806,17 @@
 
 		.title {
 			font-size: 1.2rem;
+			letter-spacing: 0.14em;
 		}
 
 		.subtitle {
 			font-size: 1rem;
 			min-height: 2rem;
+		}
+
+		.hero-system {
+			font-size: 0.65rem;
+			letter-spacing: 0.18em;
 		}
 		
 		.tagline {

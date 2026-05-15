@@ -37,7 +37,7 @@
 		};
 
 		// Initialize particles
-		for (let i = 0; i < 50; i++) {
+		for (let i = 0; i < 38; i++) {
 			particles.push(createParticle());
 		}
 
@@ -46,8 +46,8 @@
 			const offsetX = (time * 5) % gridSize;
 			const offsetY = (time * 3) % gridSize;
 
-			ctx!.strokeStyle = 'rgba(100, 200, 255, 0.08)';
-			ctx!.lineWidth = 1;
+			ctx!.strokeStyle = 'rgba(100, 200, 255, 0.05)';
+			ctx!.lineWidth = 0.6;
 
 			// Vertical lines
 			for (let x = -gridSize + offsetX; x < canvas.width; x += gridSize) {
@@ -70,7 +70,7 @@
 			particles = particles.filter((p) => p.life > 0);
 
 			// Add new particles occasionally
-			if (Math.random() < 0.15 && particles.length < 60) {
+			if (Math.random() < 0.12 && particles.length < 50) {
 				particles.push(createParticle());
 			}
 
@@ -79,15 +79,15 @@
 				p.y += p.vy;
 				p.life -= 1;
 
-				const alpha = (p.life / p.maxLife) * 1.2;
+				const alpha = (p.life / p.maxLife) * 0.6;
 				ctx!.fillStyle = `rgba(100, 200, 255, ${alpha})`;
 				ctx!.beginPath();
-				ctx!.arc(p.x, p.y, p.size * 1.2, 0, Math.PI * 2);
+				ctx!.arc(p.x, p.y, p.size, 0, Math.PI * 2);
 				ctx!.fill();
 				
 				// Add glow to particles
-				ctx!.strokeStyle = `rgba(100, 200, 255, ${alpha * 0.5})`;
-				ctx!.lineWidth = 0.5;
+				ctx!.strokeStyle = `rgba(100, 200, 255, ${alpha * 0.35})`;
+				ctx!.lineWidth = 0.4;
 				ctx!.stroke();
 
 				// Wrap around
@@ -99,20 +99,20 @@
 		};
 
 		const drawDataLines = () => {
-			ctx!.strokeStyle = `rgba(100, 200, 255, ${0.1 + Math.sin(time * 0.01) * 0.05})`;
-			ctx!.lineWidth = 1.5;
-			ctx!.shadowColor = 'rgba(100, 200, 255, 0.5)';
-			ctx!.shadowBlur = 10;
+			ctx!.strokeStyle = `rgba(100, 200, 255, ${0.06 + Math.sin(time * 0.01) * 0.02})`;
+			ctx!.lineWidth = 1;
+			ctx!.shadowColor = 'rgba(100, 200, 255, 0.25)';
+			ctx!.shadowBlur = 6;
 
 			// Draw some diagonal lines that appear to be data flowing
-			const lines = 8;
+			const lines = 6;
 			for (let i = 0; i < lines; i++) {
-				const startX = (time * 25 + i * 150) % (canvas.width + 200) - 200;
-				const startY = (i * 80) % canvas.height;
+				const startX = (time * 22 + i * 160) % (canvas.width + 200) - 200;
+				const startY = (i * 90) % canvas.height;
 
 				ctx!.beginPath();
 				ctx!.moveTo(startX, startY);
-				ctx!.lineTo(startX + 250, startY + 120);
+				ctx!.lineTo(startX + 220, startY + 110);
 				ctx!.stroke();
 			}
 			
@@ -121,7 +121,7 @@
 
 		const animate = () => {
 			// Clear with dark background
-			ctx!.fillStyle = 'rgba(10, 10, 10, 0.01)';
+			ctx!.fillStyle = 'rgba(10, 10, 10, 0.02)';
 			ctx!.fillRect(0, 0, canvas.width, canvas.height);
 
 			drawGrid();
@@ -158,6 +158,7 @@
 		width: 100%;
 		height: 100%;
 		pointer-events: none;
-		z-index: 1;
+		z-index: 0;
+		opacity: 0.45;
 	}
 </style>

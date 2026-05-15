@@ -30,7 +30,7 @@
 	.gradient {
 		position: absolute;
 		filter: blur(100px);
-		opacity: 0.15;
+		opacity: 0.1;
 		animation: float 20s ease-in-out infinite;
 	}
 	
@@ -71,7 +71,7 @@
 			linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px),
 			linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px);
 		background-size: 50px 50px;
-		opacity: 0.5;
+		opacity: 0.25;
 	}
 	
 	@keyframes float {
