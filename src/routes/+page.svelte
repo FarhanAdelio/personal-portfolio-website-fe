@@ -1890,6 +1890,7 @@
 		background: rgba(255, 255, 255, 0.3);
 		position: relative;
 		animation: pulse-dot 2s ease-in-out infinite;
+		box-shadow: 0 0 15px rgba(100, 200, 255, 0.3);
 	}
 
 	.timeline-dot::after {
@@ -1900,9 +1901,10 @@
 		transform: translate(-50%, -50%);
 		width: 20px;
 		height: 20px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		border: 1px solid rgba(100, 200, 255, 0.4);
 		border-radius: 50%;
 		animation: pulse-ring-expand 2s ease-in-out infinite;
+		box-shadow: inset 0 0 10px rgba(100, 200, 255, 0.2);
 	}
 
 	@keyframes pulse-dot {
@@ -2740,23 +2742,43 @@
 		gap: 0.75rem;
 		padding: 0.75rem 1.5rem;
 		background: rgba(255, 255, 255, 0.02);
-		border: 1px solid rgba(255, 255, 255, 0.05);
+		border: 1px solid rgba(100, 200, 255, 0.1);
 		border-radius: 50px;
-		transition: all 0.4s ease;
+		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.exp-timeline-wrapper::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.1), transparent);
+		transition: left 0.6s ease;
 	}
 
 	.experience-card-modern:hover .exp-timeline-wrapper {
-		background: rgba(255, 255, 255, 0.04);
-		border-color: rgba(255, 255, 255, 0.1);
+		background: rgba(100, 200, 255, 0.05);
+		border-color: rgba(100, 200, 255, 0.3);
+		box-shadow: 0 0 20px rgba(100, 200, 255, 0.15);
+	}
+
+	.experience-card-modern:hover .exp-timeline-wrapper::before {
+		left: 100%;
 	}
 
 	.exp-timeline-dot {
 		width: 10px;
 		height: 10px;
 		border-radius: 50%;
-		background: rgba(255, 255, 255, 0.3);
+		background: rgba(100, 200, 255, 0.4);
 		position: relative;
 		animation: pulse-dot 2s ease-in-out infinite;
+		box-shadow: 0 0 15px rgba(100, 200, 255, 0.4);
+		z-index: 1;
 	}
 
 	.exp-timeline-dot::after {
@@ -2767,9 +2789,10 @@
 		transform: translate(-50%, -50%);
 		width: 20px;
 		height: 20px;
-		border: 1px solid rgba(255, 255, 255, 0.2);
+		border: 1px solid rgba(100, 200, 255, 0.5);
 		border-radius: 50%;
 		animation: pulse-ring-expand 2s ease-in-out infinite;
+		box-shadow: inset 0 0 10px rgba(100, 200, 255, 0.3);
 	}
 
 	.exp-timeline-text {
@@ -3253,6 +3276,7 @@
 		position: relative;
 		box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
 	}
 
 	.project-card-detailed::before {
@@ -3262,29 +3286,75 @@
 		left: 0;
 		right: 0;
 		bottom: 0;
-		background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, transparent 50%);
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.08) 0%, transparent 50%, rgba(100, 200, 255, 0.04) 100%);
 		opacity: 0;
 		transition: opacity 0.5s ease;
 		pointer-events: none;
+		z-index: 1;
+	}
+
+	.project-card-detailed::after {
+		content: '';
+		position: absolute;
+		inset: 0;
+		background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(100, 200, 255, 0.1) 0%, transparent 50%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+		pointer-events: none;
+		z-index: 1;
 	}
 
 	.project-card-detailed:hover {
-		background: rgba(255, 255, 255, 0.03);
-		border-color: rgba(255, 255, 255, 0.1);
-		transform: translateY(-5px);
-		box-shadow: 0 15px 50px rgba(0, 0, 0, 0.5);
+		background: rgba(255, 255, 255, 0.04);
+		border-color: rgba(100, 200, 255, 0.3);
+		transform: translateY(-8px) scale(1.01);
+		box-shadow: 0 20px 60px rgba(100, 200, 255, 0.15), 0 15px 40px rgba(0, 0, 0, 0.4);
 	}
 
 	.project-card-detailed:hover::before {
 		opacity: 1;
 	}
 
+	.project-card-detailed:hover::after {
+		opacity: 1;
+	}
+
 	.project-card-detailed.featured {
-		border-color: rgba(255, 215, 0, 0.2);
+		border-color: rgba(100, 200, 255, 0.2);
+		box-shadow: 0 10px 40px rgba(100, 200, 255, 0.1), 0 8px 30px rgba(0, 0, 0, 0.3);
 	}
 
 	.project-card-detailed.featured:hover {
-		border-color: rgba(255, 215, 0, 0.4);
+		border-color: rgba(100, 200, 255, 0.5);
+		box-shadow: 0 25px 70px rgba(100, 200, 255, 0.2), 0 15px 40px rgba(0, 0, 0, 0.5);
+	}
+
+	/* Animated Project Card Border */
+	.project-card-detailed {
+		animation: cardBorderPulse 4s ease-in-out infinite;
+	}
+
+	@keyframes cardBorderPulse {
+		0%, 100% {
+			box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+		}
+		50% {
+			box-shadow: 0 8px 40px rgba(100, 200, 255, 0.08);
+		}
+	}
+
+	/* Featured Project Card Animation */
+	.project-card-detailed.featured {
+		animation: featuredCardPulse 3s ease-in-out infinite;
+	}
+
+	@keyframes featuredCardPulse {
+		0%, 100% {
+			box-shadow: 0 10px 40px rgba(100, 200, 255, 0.1), 0 8px 30px rgba(0, 0, 0, 0.3);
+		}
+		50% {
+			box-shadow: 0 10px 50px rgba(100, 200, 255, 0.15), 0 8px 30px rgba(0, 0, 0, 0.3);
+		}
 	}
 
 	.featured-badge-new {
