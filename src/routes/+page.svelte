@@ -2757,6 +2757,243 @@
 		}
 	}
 
+	/* ===== ADVANCED CARD EFFECTS ===== */
+
+	/* Experience Card Enhancements */
+	.experience-card-modern {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.experience-card-modern::before {
+		content: '';
+		position: absolute;
+		top: -2px;
+		left: -2px;
+		right: -2px;
+		bottom: -2px;
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.1), rgba(150, 220, 255, 0.05), transparent);
+		border-radius: 24px;
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		z-index: -1;
+	}
+
+	.experience-card-modern:hover::before {
+		opacity: 1;
+		animation: borderPulse 1.5s ease-in-out;
+	}
+
+	@keyframes borderPulse {
+		0%, 100% {
+			box-shadow: 0 0 10px rgba(100, 200, 255, 0.2);
+		}
+		50% {
+			box-shadow: 0 0 30px rgba(100, 200, 255, 0.5);
+		}
+	}
+
+	/* Bio Card Glow Effect */
+	.bio-card-3d {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.bio-card-3d::before {
+		content: '';
+		position: absolute;
+		top: -1px;
+		left: -1px;
+		right: -1px;
+		bottom: -1px;
+		background: linear-gradient(45deg, rgba(100, 200, 255, 0.15), transparent, rgba(100, 200, 255, 0.1));
+		opacity: 0;
+		border-radius: 16px;
+		z-index: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.bio-card-3d:hover::before {
+		opacity: 1;
+		animation: glowPulse 2s ease-in-out infinite;
+	}
+
+	@keyframes glowPulse {
+		0%, 100% {
+			box-shadow: 0 0 15px rgba(100, 200, 255, 0.2);
+		}
+		50% {
+			box-shadow: 0 0 40px rgba(100, 200, 255, 0.4);
+		}
+	}
+
+	/* Skill Chip Enhancements */
+	.skill-chip {
+		position: relative;
+		overflow: hidden;
+		border: 1px solid rgba(100, 200, 255, 0.2);
+		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.skill-chip::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.2), transparent);
+		animation: skillShine 2s infinite;
+	}
+
+	@keyframes skillShine {
+		0% {
+			left: -100%;
+		}
+		100% {
+			left: 100%;
+		}
+	}
+
+	.skill-chip:hover {
+		border-color: rgba(100, 200, 255, 0.5);
+		background: rgba(100, 200, 255, 0.1);
+		box-shadow: 0 0 15px rgba(100, 200, 255, 0.3);
+		transform: translateY(-3px) scale(1.05);
+	}
+
+	/* Contact Card Rotate Effect */
+	.contact-card-3d {
+		perspective: 1000px;
+	}
+
+	.contact-card-3d:hover {
+		animation: cardRotate 0.6s ease-in-out;
+	}
+
+	@keyframes cardRotate {
+		0%, 100% {
+			transform: translateY(-8px) rotateY(0deg);
+		}
+		50% {
+			transform: translateY(-8px) rotateY(5deg);
+		}
+	}
+
+	/* Interest Card Enhanced Effects */
+	.interest-card-3d {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.interest-card-3d::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.1) 0%, transparent 100%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+	}
+
+	.interest-card-3d:hover::before {
+		opacity: 1;
+	}
+
+	/* Section Title Enhanced Gradient */
+	.section-title-3d {
+		position: relative;
+		background: linear-gradient(135deg, #fff 0%, rgba(100, 200, 255, 0.8) 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		animation: titleGradientShift 4s ease-in-out infinite;
+	}
+
+	@keyframes titleGradientShift {
+		0%, 100% {
+			background: linear-gradient(135deg, #fff 0%, rgba(100, 200, 255, 0.8) 100%);
+		}
+		50% {
+			background: linear-gradient(135deg, rgba(100, 200, 255, 1) 0%, #fff 100%);
+		}
+	}
+
+	/* Enhanced Badge Glow */
+	.bio-badge {
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.15) 0%, rgba(100, 200, 255, 0.05) 100%);
+		border: 1px solid rgba(100, 200, 255, 0.3);
+		position: relative;
+		overflow: hidden;
+	}
+
+	.bio-badge::before {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.1), transparent);
+		animation: badgeShine 3s infinite;
+	}
+
+	@keyframes badgeShine {
+		0% {
+			transform: translate(-50%, -50%);
+		}
+		100% {
+			transform: translate(50%, 50%);
+		}
+	}
+
+	/* Project Title Animation */
+	.project-title-new {
+		position: relative;
+		display: inline-block;
+	}
+
+	.project-title-new::after {
+		content: '';
+		position: absolute;
+		bottom: -3px;
+		left: 0;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, rgba(100, 200, 255, 0.8), transparent);
+		transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.project-card-detailed:hover .project-title-new::after {
+		width: 100%;
+	}
+
+	/* Contact Form Button Enhanced */
+	.btn-primary {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.btn-primary::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 0;
+		height: 0;
+		border-radius: 50%;
+		background: rgba(100, 200, 255, 0.2);
+		transform: translate(-50%, -50%);
+		transition: width 0.6s, height 0.6s;
+	}
+
+	.btn-primary:active::before {
+		width: 300px;
+		height: 300px;
+	}
+
 	/* Responsive Glow Intensity */
 	@media (prefers-reduced-motion: no-preference) {
 		* {
