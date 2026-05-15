@@ -11,6 +11,7 @@
 	import TiltCard from '$lib/TiltCard.svelte';
 	import LoadingScreen from '$lib/LoadingScreen.svelte';
 	import AnimatedName from '$lib/AnimatedName.svelte';
+	import FuturisticAtmosphere from '$lib/FuturisticAtmosphere.svelte';
 	
 	export let data;
 
@@ -101,6 +102,7 @@
 <ScrollProgress />
 <AnimatedBackground />
 <FloatingElements />
+<FuturisticAtmosphere />
 <InteractiveBackground />
 
 <!-- Fixed Navigation -->
@@ -2103,6 +2105,403 @@
 		background: #fff;
 		box-shadow: 0 0 12px rgba(255, 255, 255, 0.6);
 		transform: scale(1.6);
+	}
+
+	/* ===== CINEMATIC FUTURISTIC ENHANCEMENTS ===== */
+
+	/* Hero Section Cinematic Glow */
+	.hero {
+		position: relative;
+		overflow: hidden;
+	}
+
+	.hero::before {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+		width: 600px;
+		height: 600px;
+		background: radial-gradient(circle, rgba(100, 200, 255, 0.08) 0%, transparent 70%);
+		border-radius: 50%;
+		filter: blur(60px);
+		pointer-events: none;
+		animation: heroGlowPulse 6s ease-in-out infinite;
+		z-index: 0;
+	}
+
+	@keyframes heroGlowPulse {
+		0%, 100% {
+			transform: translate(-50%, -50%) scale(1);
+			opacity: 0.8;
+		}
+		50% {
+			transform: translate(-50%, -50%) scale(1.1);
+			opacity: 1;
+		}
+	}
+
+	.hero-content {
+		position: relative;
+		z-index: 1;
+	}
+
+	/* Name Glow Effect */
+	.name-wrapper {
+		position: relative;
+		display: inline-block;
+	}
+
+	.name-wrapper::after {
+		content: '';
+		position: absolute;
+		top: -10px;
+		left: -10px;
+		right: -10px;
+		bottom: -10px;
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.2) 0%, transparent 50%);
+		border-radius: 20px;
+		filter: blur(20px);
+		opacity: 0;
+		animation: nameGlowAppear 1s ease-out 0.3s forwards;
+		pointer-events: none;
+		z-index: -1;
+	}
+
+	@keyframes nameGlowAppear {
+		to {
+			opacity: 1;
+		}
+	}
+
+	/* Enhanced Button Glow */
+	.btn-primary {
+		background: #fff;
+		color: #0a0a0a;
+		position: relative;
+		overflow: hidden;
+		box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.btn-primary::after {
+		content: '';
+		position: absolute;
+		top: -50%;
+		left: -50%;
+		width: 200%;
+		height: 200%;
+		background: radial-gradient(circle, rgba(255, 255, 255, 0.3) 0%, transparent 70%);
+		opacity: 0;
+		transition: opacity 0.3s ease;
+	}
+
+	.btn-primary:hover {
+		box-shadow: 0 0 40px rgba(255, 255, 255, 0.3), inset 0 0 30px rgba(255, 255, 255, 0.1);
+		transform: translateY(-3px) scale(1.05);
+	}
+
+	.btn-primary:hover::after {
+		opacity: 1;
+	}
+
+	.btn-secondary {
+		color: #fff;
+		border: 2px solid rgba(255, 255, 255, 0.2);
+		background: transparent;
+		position: relative;
+		overflow: hidden;
+		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.btn-secondary::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: -100%;
+		width: 100%;
+		height: 100%;
+		background: rgba(100, 200, 255, 0.15);
+		transition: left 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+		z-index: -1;
+	}
+
+	.btn-secondary:hover {
+		color: #fff;
+		border-color: rgba(100, 200, 255, 0.5);
+		box-shadow: 0 0 20px rgba(100, 200, 255, 0.2);
+		transform: translateY(-3px);
+	}
+
+	.btn-secondary:hover::before {
+		left: 0;
+	}
+
+	/* Enhanced Card Hover Effects */
+	.card-inner-3d,
+	.contact-card-3d,
+	.bio-card-3d,
+	.skill-card,
+	.project-card {
+		position: relative;
+		transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.card-inner-3d::before,
+	.contact-card-3d::before,
+	.bio-card-3d::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		background: linear-gradient(135deg, rgba(100, 200, 255, 0.1) 0%, transparent 50%, rgba(100, 200, 255, 0.05) 100%);
+		opacity: 0;
+		transition: opacity 0.4s ease;
+		pointer-events: none;
+		border-radius: inherit;
+	}
+
+	.card-inner-3d:hover::before,
+	.contact-card-3d:hover::before,
+	.bio-card-3d:hover::before {
+		opacity: 1;
+	}
+
+	/* Glassmorphism Enhancement */
+	.bio-card-3d,
+	.card-inner-3d,
+	.contact-card-3d {
+		backdrop-filter: blur(10px);
+		-webkit-backdrop-filter: blur(10px);
+		background: rgba(255, 255, 255, 0.02);
+	}
+
+	.card-inner-3d:hover,
+	.contact-card-3d:hover {
+		backdrop-filter: blur(15px);
+		-webkit-backdrop-filter: blur(15px);
+		background: rgba(255, 255, 255, 0.05);
+	}
+
+	/* Animated Border Glow */
+	.card-inner-3d,
+	.contact-card-3d {
+		border-image: linear-gradient(135deg, rgba(100, 200, 255, 0.1) 0%, rgba(255, 255, 255, 0.1) 50%, rgba(100, 200, 255, 0.05) 100%) 1;
+	}
+
+	.card-inner-3d:hover,
+	.contact-card-3d:hover {
+		border-image: linear-gradient(135deg, rgba(100, 200, 255, 0.3) 0%, rgba(255, 255, 255, 0.2) 50%, rgba(100, 200, 255, 0.15) 100%) 1;
+	}
+
+	/* Smooth Hover Elevation */
+	.card-inner-3d:hover,
+	.bio-card-3d:hover {
+		transform: translateY(-5px);
+		box-shadow: 0 20px 40px rgba(100, 200, 255, 0.1), 0 10px 30px rgba(0, 0, 0, 0.2);
+	}
+
+	.contact-card-3d:hover {
+		box-shadow: 0 25px 50px rgba(100, 200, 255, 0.12), 0 15px 35px rgba(0, 0, 0, 0.3);
+	}
+
+	/* Pulse Animation for Status Elements */
+	@keyframes subtlePulse {
+		0%, 100% {
+			opacity: 1;
+		}
+		50% {
+			opacity: 0.7;
+		}
+	}
+
+	.bio-badge,
+	.featured-badge,
+	.featured-badge-new {
+		animation: subtlePulse 3s ease-in-out infinite;
+	}
+
+	/* Enhanced Text Hierarchy */
+	.section-title-3d {
+		position: relative;
+		display: inline-block;
+		background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+		-webkit-background-clip: text;
+		-webkit-text-fill-color: transparent;
+		background-clip: text;
+		transition: all 0.4s ease;
+	}
+
+	/* Gradient Accent for Important Text */
+	.tagline {
+		position: relative;
+	}
+
+	.tagline::after {
+		content: '';
+		position: absolute;
+		bottom: -5px;
+		left: 50%;
+		transform: translateX(-50%);
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.5), transparent);
+		transition: width 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+		animation: gradientAccent 2s ease-in-out infinite;
+	}
+
+	@keyframes gradientAccent {
+		0%, 100% {
+			width: 0;
+		}
+		50% {
+			width: 300px;
+		}
+	}
+
+	/* Smooth Scroll Reveal Animation */
+	@keyframes scrollReveal {
+		from {
+			opacity: 0;
+			transform: translateY(40px);
+		}
+		to {
+			opacity: 1;
+			transform: translateY(0);
+		}
+	}
+
+	.observe-fade {
+		animation: scrollReveal 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+		animation-timeline: view();
+		animation-range: entry 0% cover 30%;
+	}
+
+	/* Stagger Animation for List Items */
+	.interest-card-3d {
+		animation: slideInRight 0.6s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+		animation-delay: calc(var(--delay, 0) * 100ms);
+	}
+
+	/* Enhanced Section Transitions */
+	section {
+		position: relative;
+	}
+
+	section::before {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		height: 1px;
+		background: linear-gradient(90deg, transparent, rgba(100, 200, 255, 0.2), transparent);
+		opacity: 0;
+		transition: opacity 0.6s ease;
+	}
+
+	/* Smooth Link Hover Effects */
+	a {
+		transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	a:not(.btn):not(.nav-links a):hover {
+		color: #64c8ff;
+		text-shadow: 0 0 10px rgba(100, 200, 255, 0.3);
+	}
+
+	/* Enhanced Icon Animations */
+	svg {
+		transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	.btn svg {
+		animation: iconFloat 2s ease-in-out infinite;
+	}
+
+	@keyframes iconFloat {
+		0%, 100% {
+			transform: translateX(0);
+		}
+		50% {
+			transform: translateX(3px);
+		}
+	}
+
+	/* Micro-interaction: Loading States */
+	@keyframes shimmer {
+		0% {
+			background-position: -1000px 0;
+		}
+		100% {
+			background-position: 1000px 0;
+		}
+	}
+
+	/* Smooth Page Transition */
+	main {
+		opacity: 1;
+		animation: pageLoad 0.6s ease-out;
+	}
+
+	@keyframes pageLoad {
+		from {
+			opacity: 0;
+		}
+		to {
+			opacity: 1;
+		}
+	}
+
+	/* Enhanced Focus States */
+	:focus-visible {
+		outline: 2px solid rgba(100, 200, 255, 0.5);
+		outline-offset: 2px;
+		border-radius: 4px;
+	}
+
+	/* Subtle Floating Animation */
+	@keyframes subtleFloat {
+		0%, 100% {
+			transform: translateY(0px);
+		}
+		50% {
+			transform: translateY(-8px);
+		}
+	}
+
+	.floating-item {
+		animation: subtleFloat 4s ease-in-out infinite;
+	}
+
+	/* Premium Text Shadow for Emphasis */
+	.subtitle,
+	.section-title-3d {
+		text-shadow: 0 0 30px rgba(100, 200, 255, 0.1);
+	}
+
+	/* Smooth Color Transitions */
+	.hero-text p,
+	.hero-text h2 {
+		transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+	}
+
+	/* Responsive Glow Intensity */
+	@media (prefers-reduced-motion: no-preference) {
+		* {
+			scroll-behavior: smooth;
+		}
+
+		.btn {
+			transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+		}
+
+		section {
+			transition: all 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+		}
 	}
 
 	/* Responsive */
